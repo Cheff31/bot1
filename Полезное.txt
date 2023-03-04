@@ -1,0 +1,70 @@
+Полезное 
+
+#import pandas as pd    # работа с Excel
+#import numpy as np     # работа с Excel
+
+
+#чтение excel Файла базы   
+#cs = pd.read_excel('C:/Users/lait3/Desktop/test.xlsx', sheet_name='Лист1' , names=['ID'], usecols='A' )
+#print(cs)
+
+
+# Подключаем базу SQL 
+
+#sqlite_connection = sqlite3.connect('C:/Users/lait3/Desktop/kaijobot/baza.db' , check_same_thread=False ) 
+#cursor = sqlite_connection.cursor()    # коннект к базе 
+#c = 'jap'
+#sql_query  = "SELECT * FROM " + c
+#cursor.execute(sql_query)
+#base = cursor.fetchall()
+#
+#f = open('temp.txt' , 'w+')
+#for item in base:
+#    f.write("%s\n" % item)
+#f.close()
+#
+#f = open('temp.txt' , 'r') 
+#print(f.read())
+
+
+{0.first_name} в стринге = имя пользователя  (использовать .format(message.from_user)
+{1.first_name} в стринге = имя бота  (использовать			.format(message.from_user, bot.get_me())
+пример: 
+	bot.reply_to(message, "Привет  {0.first_name}. \nКакие дела мужик {1.first_name}".format(message.from_user, bot.get_me()) 
+              ,reply_markup=markup )
+
+	# клавиатура
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	but1 = types.KeyboardButton('Кнопка1')
+	but2 = types.KeyboardButton('Кнопка2')
+	markup.add(but1, but2)
+
+	bot.reply_to(message, "Привет  {0.first_name}. \nКакие дела мужик {1.first_name}".format(message.from_user, bot.get_me()) 
+              ,reply_markup=markup )
+
+
+
+##########################################################
+@bot.message_handler(commands=['test'])
+def send_welcome(message):
+
+	# клавиатура
+	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+	but1 = types.KeyboardButton("1")
+	but2 = types.KeyboardButton("2")
+	markup.add(but1, but2)
+	#Удаление клавы в итоге 
+	bot.reply_to(message, "Здравствуй" , reply_markup=types.ReplyKeyboardRemove())
+
+
+##########################################################
+
+
+
+
+    	#удаляем инлайновую клаву
+        #bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Книги на любой вкус",
+    	#	reply_markup=None)
+
+    	#Создаём уведомление
+    	#bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text='Приятного чтения!')
